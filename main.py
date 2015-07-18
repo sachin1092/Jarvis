@@ -11,6 +11,7 @@ speech = gapi.Speech('en-uk')
 import requests
 import json
 import acoustid
+import commands
 
 def get_ip_address():
     r = requests.get("http://ipinfo.io/ip")
@@ -56,6 +57,7 @@ def handler(fileName):
 					print 'text:', phrase
 					if listen:
 						listen = False
+						# commands.execute(phrase, speech)
 						if "weather" in phrase.lower():
 							engine.say(get_weather())
 							engine.runAndWait()

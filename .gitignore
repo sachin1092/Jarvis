@@ -46,3 +46,6 @@ lm
 
 #virtualenv
 venv/
+
+
+*.wav

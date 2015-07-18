@@ -7,15 +7,15 @@ import en
 import psw
 import gapi
 
-import player
+# import player
 
-songPlayer = player.Player()
-player.init()
+# songPlayer = player.Player()
+# player.init()
 
 import subprocess
-from grooveshark import Client
-songClient = Client()
-songClient.init()
+# from grooveshark import Client
+# songClient = Client()
+# songClient.init()
 
 from sets import Set
 
@@ -196,7 +196,7 @@ def doOpenProgram(text, score, speech, translator):
 def doCloseProgram(text, score, speech, translator):
 	closeAppList = {'editor': 'gedit', 'browser':'chrome', 'console':'gnome-terminal', 'calculator':'gnome-calculator'}
 	prog = score[1]
-	psw.play(speech.getAudio(translator.translate('I will close the '+prog)))
+	psw.play(speech.getAudio(translator.translate('I will close the ' + prog)))
 	from os import system
 	system('killall '+closeAppList[prog])
 
@@ -214,39 +214,39 @@ def doWhatDay(text, score, speech, translator):
 	st = datetime.datetime.fromtimestamp(ts).strftime('Today is %A, %-d. %B %Y')
 	psw.play(speech.getAudio(translator.translate(st)))
 
-def doPlaySong(text, score, speech, translator):
-	if score[2]=='song':
-		if len(score[1])>0:
-			songs = list(songClient.search(' '.join(score[1])))
-			#song = songs[0]
-			print 'Found',len(songs),'songs'
-			#subprocess.call(['cvlc', song.stream.url])
-			#subprocess.call(['mplayer', song.stream.url])
-			songPlayer.play(songs)
-		else:
-			songPlayer.play()
-	elif score[2]=='artist':
-		songs = list(list(songClient.search(' '.join(score[1]),Client.ARTISTS))[0].songs)
-		#n = int(np.random.rand()*len(songs))
-		#song = songs[n]
-		print 'Found',len(songs),'songs'
-		songPlayer.play(songs)
-		#print 'Playing song',n
-		#print str(song), song.duration
-		#subprocess.call(['cvlc',song.stream.url])
-		#subprocess.call(['mplayer',song.stream.url])
-		#player.set_state(gst.STATE_NULL)
-		#player.set_property('uri',song.stream.url)
-		#player.set_state(gst.STATE_PLAYING)
+# def doPlaySong(text, score, speech, translator):
+# 	if score[2]=='song':
+# 		if len(score[1])>0:
+# 			songs = list(songClient.search(' '.join(score[1])))
+# 			#song = songs[0]
+# 			print 'Found',len(songs),'songs'
+# 			#subprocess.call(['cvlc', song.stream.url])
+# 			#subprocess.call(['mplayer', song.stream.url])
+# 			songPlayer.play(songs)
+# 		else:
+# 			songPlayer.play()
+# 	elif score[2]=='artist':
+# 		songs = list(list(songClient.search(' '.join(score[1]),Client.ARTISTS))[0].songs)
+# 		#n = int(np.random.rand()*len(songs))
+# 		#song = songs[n]
+# 		print 'Found',len(songs),'songs'
+# 		songPlayer.play(songs)
+# 		#print 'Playing song',n
+# 		#print str(song), song.duration
+# 		#subprocess.call(['cvlc',song.stream.url])
+# 		#subprocess.call(['mplayer',song.stream.url])
+# 		#player.set_state(gst.STATE_NULL)
+# 		#player.set_property('uri',song.stream.url)
+# 		#player.set_state(gst.STATE_PLAYING)
 
-def doPauseSong(text, score, speech, translator):
-	songPlayer.pause()
+# def doPauseSong(text, score, speech, translator):
+# 	songPlayer.pause()
 
-def doNextSong(text, score, speech, translator):
-	songPlayer.next()
+# def doNextSong(text, score, speech, translator):
+# 	songPlayer.next()
 
-def doPreviousSong(text, score, speech, translator):
-	songPlayer.previous()
+# def doPreviousSong(text, score, speech, translator):
+# 	songPlayer.previous()
 
 isAwaken = True
 def doWakeUp(text, score, speech, translator):
@@ -295,6 +295,8 @@ def doWhatIs(text, score, speech, translator):
 		psw.play(speech.getAudio(translator.translate(phrase)))
 
 def execute(text, speech):
+	# import pdb
+	# pdb.set_trace()
 	translator = gapi.Translator('en-uk', speech.lang)
 	global isAwaken
 
